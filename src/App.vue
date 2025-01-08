@@ -1,9 +1,11 @@
 <template>
   <Banner />
+  <Core />
 </template>
 
 <script setup>
 import Banner from './components/banner.vue';
+import Core from "./components/core.vue";
 
 </script>
 
