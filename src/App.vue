@@ -1,53 +1,13 @@
-<!--
-通过内建的 <TransitionGroup> 实现“FLIP”列表过渡效果。
-https://aerotwist.com/blog/flip-your-animations/
--->
+<template>
+  <Banner />
+</template>
 
 <script setup>
-import { shuffle as _shuffle } from 'lodash-es'
-import { ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Banner from './components/banner.vue';
 
-const getInitialItems = () => [1, 2, 3, 4, 5]
-const items = ref(getInitialItems())
-let id = items.value.length + 1
-
-function insert() {
-  const i = Math.round(Math.random() * items.value.length)
-  items.value.splice(i, 0, id++)
-}
-
-function reset() {
-  items.value = getInitialItems()
-  id = items.value.length + 1
-}
-
-function shuffle() {
-  items.value = _shuffle(items.value)
-}
-
-function remove(item) {
-  const i = items.value.indexOf(item)
-  if (i > -1) {
-    items.value.splice(i, 1)
-  }
-}
 </script>
 
-<template>
-  <button @click="insert">Insert at random index</button>
-  <button @click="reset">Reset</button>
-  <button @click="shuffle">Shuffle</button>
 
-  <TransitionGroup tag="ul" name="fade" class="container">
-    <li v-for="item in items" class="item" :key="item">
-      {{ item }}
-      <button @click="remove(item)">x</button>
-    </li>
-  </TransitionGroup>
-  <div class="rest">long</div>
-  <HelloWorld />
-</template>
 
 <style>
 .container {
