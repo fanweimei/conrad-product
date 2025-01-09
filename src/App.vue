@@ -1,11 +1,13 @@
 <template>
   <Banner />
   <Introduction />
+  <Customization />
 </template>
 
 <script setup>
 import Banner from './components/banner.vue';
 import Introduction from "./components/introduction.vue";
+import Customization from "./components/customization.vue";
 
 </script>
 

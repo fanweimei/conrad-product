@@ -31,10 +31,11 @@ import { onMounted } from "vue";
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".g-introduction", // 监听 `.animate-from-bottom` 元素
-    start: "top bottom", // 当元素顶部到达视口底部时触发
-    end: "top top", // 可以设置动画结束位置
+    start: "top center", // 当元素顶部到达视口底部时触发
+    end: "bottom center", // 可以设置动画结束位置
     // scrub: true, // 使得动画与滚动位置同步
     markers: true, // 开启标记，便于调试
+    toggleActions: "play none none none"
   },
 });
 
@@ -46,17 +47,21 @@ onMounted(() => {
     opacity: 1, // 渐显
     //   ease: "power2.out"
   })
+    .from(".introduction-right", {
+      duration: 1,
+      opacity: 0,
+      y: 100,
+    }, "<")
     .from(".animate-from-left", {
       duration: 1,
       x: -300, // 从左边移动到原位置
       opacity: 1,
       ease: "power2.out",
+      onComplete: () => {
+        console.log('complete animation')
+      }
     })
-    .from(".introduction-right", {
-      duration: 1,
-      opacity: 0,
-      y: 100,
-    })
+
     .from(".line", {
       opacity: 0,
       duration: 1,
@@ -68,10 +73,10 @@ onMounted(() => {
 .g-introduction {
   width: 100%;
   height: 600px;
-  background: url("@/assets/image/introduction_bg.jpg") no-repeat top
-    transparent;
+  background: url("@/assets/image/introduction_bg.jpg") no-repeat top transparent;
   background-attachment: fixed;
 }
+
 .introduction-content {
   width: 90%;
   margin: 0 auto;
@@ -79,35 +84,43 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+
   .introduction-right {
     width: 560px;
     height: 360px;
+
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
+
   .introduction-left {
     flex: 1;
+
     .left-inner {
       padding-right: 80px;
       //   border-bottom: 1px solid #999;
     }
+
     .line {
       width: 100%;
       height: 1px;
       background-color: #999;
     }
+
     h4 {
       font-size: 30px;
       color: #fff;
     }
+
     strong {
       display: block;
       font-size: 24px;
       color: #aaa;
     }
+
     .desc {
       font-size: 14px;
       color: #ddd;
