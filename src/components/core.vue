@@ -8,9 +8,33 @@
             <img src="//14817470.s61i.faiusr.com/2/AD0IvrGIBxACGAAgysHl2gUo1eSO7gcwqQQ4zwI.jpg.webp" alt="">
         </div>
     </div>
+    <div class="box">
+
+    </div>
+    <div style="height: 1800px; background-color: yellow;"></div>
 </template>
 
 <script lang="ts" setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted } from 'vue';
+
+gsap.registerPlugin(ScrollTrigger);
+
+onMounted(() => {
+    gsap.to('.box', {
+        scrollTrigger: {
+            trigger: '.box',
+            start: 'top 80%',
+            end: '+=500',
+            pin: true,
+            // scrub: true,
+            markers: true
+        },
+        x: 1000,
+        duration: 10
+    })
+})
 </script>
 
 <style scoped lang="less">
@@ -30,5 +54,10 @@
             height: 100%;
         }
     }
+}
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: red;
 }
 </style>

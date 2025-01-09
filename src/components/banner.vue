@@ -1,5 +1,5 @@
 <template>
-  <a-carousel arrows>
+  <a-carousel arrows :autoplay="true" :autoplaySpeed="3000">
     <template #prevArrow>
       <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
         <LeftOutlined :style="{fontSize: '30px', color: '#fff'}" />
@@ -10,8 +10,12 @@
         <RightOutlined :style="{fontSize: '30px', color: '#fff'}" />
       </div>
     </template>
-    <div class="banner-item" v-for="item in items" :key="item.id">
-      <div :style="{ height: bannerHeight + 'px', background: `url(${item.bgUrl})` }">{{ item }}</div>
+    <div v-for="item in items" :key="item.id">
+      <div class="banner-item" :style="{ height: '100vh', backgroundImage: `url(${item.bgUrl})` }">
+        <div class="banner-item-inner">
+          {{ item.id }}
+        </div>
+      </div>
     </div>
   </a-carousel>
 </template>
@@ -19,10 +23,12 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons-vue";
 import { onMounted, ref } from "vue";
 
+const getImgUrl = (imagePath: string) => new URL(imagePath, import.meta.url).href
+
 const bannerHeight = ref(window.innerHeight);
 const items = ref([
-    { id: 1, bgUrl: 'https://14817470.s61i.faiusr.com/4/AD0IvrGIBxAEGAAgmP7AzwUoyNzgFTCADziYBw.png' },
-    { id: 2, bgUrl: 'https://14817470.s61i.faiusr.com/4/AD0IvrGIBxAEGAAgnv7AzwUos9eDqwEwgA84mAc.png' }
+    { id: 1, bgUrl: getImgUrl('../assets/image/banner_bg1.png') },
+    { id: 2, bgUrl: getImgUrl('../assets/image/banner_bg2.png') }
 ]);
 
 onMounted(() => {
@@ -35,7 +41,7 @@ onMounted(() => {
   text-align: center;
   /* height: 160px;
   line-height: 160px; */
-  background: #364d79;
+  // background: #364d79;
   overflow: hidden;
 }
 
@@ -65,5 +71,20 @@ onMounted(() => {
 :deep(.slick-slide h3) {
   color: #fff;
 }
-
+.banner-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-image 2s ease-in-out;
+  .banner-item-inner {
+    width: 830px;
+    height: 420px;
+    border: 5px solid #999;
+    line-height: 420px;
+    color: #ddd;
+    text-align: center;
+    font-size: 42px;
+  }
+}
 </style>

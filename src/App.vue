@@ -1,11 +1,11 @@
 <template>
   <Banner />
-  <Core />
+  <Introduction />
 </template>
 
 <script setup>
 import Banner from './components/banner.vue';
-import Core from "./components/core.vue";
+import Introduction from "./components/introduction.vue";
 
 </script>
 
