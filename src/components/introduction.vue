@@ -34,7 +34,7 @@ const tl = gsap.timeline({
     start: "top center", // 当元素顶部到达视口底部时触发
     end: "bottom center", // 可以设置动画结束位置
     // scrub: true, // 使得动画与滚动位置同步
-    markers: true, // 开启标记，便于调试
+    // markers: true, // 开启标记，便于调试
     toggleActions: "play none none none"
   },
 });
@@ -44,7 +44,7 @@ onMounted(() => {
     delay: 1,
     duration: 1,
     y: 100, // 动画从底部移动上来
-    opacity: 1, // 渐显
+    opacity: 0, // 渐显
     //   ease: "power2.out"
   })
     .from(".introduction-right", {
@@ -55,7 +55,7 @@ onMounted(() => {
     .from(".animate-from-left", {
       duration: 1,
       x: -300, // 从左边移动到原位置
-      opacity: 1,
+      opacity: 0,
       ease: "power2.out",
       onComplete: () => {
         console.log('complete animation')

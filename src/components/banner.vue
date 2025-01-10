@@ -22,13 +22,15 @@
 <script lang="ts" setup>
 import { LeftOutlined, RightOutlined } from "@ant-design/icons-vue";
 import { onMounted, ref } from "vue";
+import bg1 from "@/assets/image/banner_bg1.png";
+import bg2 from "@/assets/image/banner_bg2.png";
 
-const getImgUrl = (imagePath: string) => new URL(imagePath, import.meta.url).href
+// const getImgUrl = (imagePath: string) => new URL(imagePath, import.meta.url).href
 
 const bannerHeight = ref(window.innerHeight);
 const items = ref([
-    { id: 1, bgUrl: getImgUrl('../assets/image/banner_bg1.png') },
-    { id: 2, bgUrl: getImgUrl('../assets/image/banner_bg2.png') }
+    { id: 1, bgUrl: bg1 },
+    { id: 2, bgUrl: bg2 }
 ]);
 
 onMounted(() => {

@@ -44,19 +44,19 @@ import { onMounted } from 'vue';
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".g-customization", // 监听 `.animate-from-bottom` 元素
-    start: "top center", // 当元素顶部到达视口底部时触发
-    end: "bottom center", // 可以设置动画结束位置
+    start: "top bottom", // 当元素顶部到达视口底部时触发
+    end: "bottom top", // 可以设置动画结束位置
     // scrub: true, // 使得动画与滚动位置同步
-    markers: true, // 开启标记，便于调试
+    // markers: true, // 开启标记，便于调试
     toggleActions: "play none none none"
   },
 });
 
 onMounted(() => {
     tl.from(".custom-title", {
-        delay: 1,
+        delay: 2,
         duration: 1,
-        y: 100, // 动画从底部移动上来
+        y: 150, // 动画从底部移动上来
         ease: "power2.out",
         opacity: 0
     })
@@ -99,13 +99,18 @@ onMounted(() => {
         strong {
             display: block;
             font-size: 16px;
-            color: #ccc;
+            color: #eee;
             margin-bottom: 24px;
+            line-height: 1.5;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;;
+            white-space: nowrap;
         }
 
         .desc {
             font-size: 14px;
-            color: #aaa;
+            color: #bbb;
             line-height: 1.8;
         }
 

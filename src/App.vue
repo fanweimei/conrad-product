@@ -2,12 +2,20 @@
   <Banner />
   <Introduction />
   <Customization />
+  <Cardlist />
+  <Realtime />
+  <Partner />
+  <Footer />
 </template>
 
 <script setup>
 import Banner from './components/banner.vue';
 import Introduction from "./components/introduction.vue";
 import Customization from "./components/customization.vue";
+import Cardlist from "./components/cardlist.vue";
+import Realtime from "./components/realtime.vue";
+import Partner from "./components/partner.vue";
+import Footer from "./components/footer.vue";
 
 </script>
 
