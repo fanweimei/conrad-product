@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <Banner />
   <Introduction />
   <Customization />
@@ -6,9 +7,12 @@
   <Realtime />
   <Partner />
   <Footer />
+  <BackTop>
+  </BackTop>
 </template>
 
 <script setup>
+import { BackTop } from 'ant-design-vue';
 import Banner from './components/banner.vue';
 import Introduction from "./components/introduction.vue";
 import Customization from "./components/customization.vue";
@@ -16,6 +20,7 @@ import Cardlist from "./components/cardlist.vue";
 import Realtime from "./components/realtime.vue";
 import Partner from "./components/partner.vue";
 import Footer from "./components/footer.vue";
+import Header from "./components/header.vue";
 
 </script>
 
@@ -27,6 +32,7 @@ import Footer from "./components/footer.vue";
   padding: 0;
   list-style-type: none;
 }
+
 .rest {
   height: 1000px;
 }

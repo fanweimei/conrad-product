@@ -1,5 +1,5 @@
 <template>
-    <div class="g-customization">
+    <div id="advantages" class="g-customization">
         <h4 class="custom-title">Main Advantages</h4>
         <ul class="custom-list">
             <li class="custom-item">
@@ -7,7 +7,7 @@
                 <div class="item-txt">
                     <strong>High Degree of Automation</strong>
                     <div class="desc">
-                        oWith the advanced YOLOv11 algorithm and PID control system, AquaSentry can automatically
+                        With the advanced YOLOv11 algorithm and PID control system, AquaSentry can automatically
                         identify the drowning person and accurately launch the lifebuoy without any human intervention.
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="item-txt">
                     <strong>Portability & Multi-Scenario Adaptability</strong>
                     <div class="desc">
-                        oIt adopts a detachable design and weighs only 9 kg, making it convenient to carry and deploy.
+                        It adopts a detachable design and weighs only 9 kg, making it convenient to carry and deploy.
                         It can be applied efficiently whether in indoor pools, outdoor lakes or post-disaster emergency
                         rescues.
                     </div>
@@ -28,7 +28,7 @@
                 <div class="item-txt">
                     <strong>Low Latency & High Precision</strong>
                     <div class="desc">
-                        oThe combination of hardware and software ensures that the rescue task can be completed
+                        The combination of hardware and software ensures that the rescue task can be completed
                         accurately even under high-pressure environments, far surpassing similar products.
                     </div>
                 </div>
@@ -41,32 +41,31 @@
 import gsap from 'gsap';
 import { onMounted } from 'vue';
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".g-customization", // 监听 `.animate-from-bottom` 元素
-    start: "top bottom", // 当元素顶部到达视口底部时触发
-    end: "bottom top", // 可以设置动画结束位置
-    // scrub: true, // 使得动画与滚动位置同步
-    // markers: true, // 开启标记，便于调试
-    toggleActions: "play none none none"
-  },
-});
-
 onMounted(() => {
-    tl.from(".custom-title", {
-        delay: 2,
-        duration: 1,
-        y: 150, // 动画从底部移动上来
-        ease: "power2.out",
-        opacity: 0
-    })
-    .from(".custom-item", {
-        duration: 2,
-        y: 100, // 动画从底部移动上来
-        ease: "power2.out",
-        stagger: 0.5,
-        opacity: 0
-    })
+    setTimeout(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".g-customization", // 监听 `.animate-from-bottom` 元素
+                start: "top 75%",  // 当元素的顶部到达视口底部时触发
+                end: "bottom 25%",    // 当元素的底部到达视口顶部时结束
+                // markers: true, // 开启标记，便于调试
+                toggleActions: "play none none none",
+            },
+        });
+        tl.from(".custom-title", {
+            duration: 1,
+            y: 150, // 动画从底部移动上来
+            ease: "power2.out",
+            opacity: 0
+        })
+            .from(".custom-item", {
+                duration: 2,
+                y: 100, // 动画从底部移动上来
+                ease: "power2.out",
+                stagger: 0.5,
+                opacity: 0
+            })
+    }, 100);
 })
 </script>
 
@@ -89,13 +88,16 @@ onMounted(() => {
     margin: 0 auto;
     display: flex;
     padding-left: 0;
+
     .custom-item {
         flex: 1;
         margin: 0 20px;
         display: flex;
+
         .item-txt {
             flex: 1;
         }
+
         strong {
             display: block;
             font-size: 16px;
@@ -104,7 +106,8 @@ onMounted(() => {
             line-height: 1.5;
             max-width: 100%;
             overflow: hidden;
-            text-overflow: ellipsis;;
+            text-overflow: ellipsis;
+            ;
             white-space: nowrap;
         }
 

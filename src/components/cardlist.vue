@@ -1,9 +1,9 @@
 <template>
-  <div class="g-cardlist">
+  <div id="mechanism" class="g-cardlist">
     <div class="cardlist-inner">
       <div class="cardlist-left">
         <div class="cardlist-left-media">
-          <img src="@/assets/image/cardlist_left.png" alt="" />
+          <img src="/cardlist_left.png" alt="" />
         </div>
         <div class="cardlist-left-txt cardlist-txt">
           <div class="animation-cardlist-txt">
@@ -12,7 +12,7 @@
               Mechanism
             </h4>
             <div class="desc">
-              oIt has two degrees of freedom of pitch and yaw rotation. Combined
+              It has two degrees of freedom of pitch and yaw rotation. Combined
               with the four-roller high-speed friction launch mechanism driven
               by two brushless motors, it can flexibly adjust the launch angle
               and achieve long-distance and accurate launch of the
@@ -27,7 +27,7 @@
             <div class="animation-cardlist-txt">
               <h4>High-precision Sensing and Tracking System</h4>
               <div class="desc">
-                oEquipped with a high-definition and ultra-high-speed industrial
+                Equipped with a high-definition and ultra-high-speed industrial
                 camera sensor and matched with the PID control algorithm, it can
                 real-time accurately locate and automatically track the drowning
                 person in various environments, providing reliable support for
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="cardlist-right-media">
-            <video src="@/assets/video/cardlist_right1.mp4" controls></video>
+            <video src="/cardlist_right1.mp4" controls autoplay muted loop></video>
           </div>
         </li>
         <li class="cardlist-right-item">
@@ -44,7 +44,7 @@
             <div class="animation-cardlist-txt">
               <h4>Efficient Software Algorithm Optimization</h4>
               <div class="desc">
-                oBased on 12,000 labeled drowning images and data augmentation
+                Based on 12,000 labeled drowning images and data augmentation
                 technology, an exclusive YOLOv11 model has been successfully
                 trained, achieving a 98.7% recognition accuracy and 1.12% packet
                 loss rate. AquaSentry uses the NVIDIA GeForce RTX 3060 Laptop
@@ -54,7 +54,7 @@
             </div>
           </div>
           <div class="cardlist-right-media">
-            <video src="@/assets/video/cardlist_right2.mp4" controls></video>
+            <video src="/cardlist_right2.mp4" controls autoplay muted loop></video>
           </div>
         </li>
         <li class="cardlist-right-item" style="height: 210px">
@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="cardlist-right-media">
-            <img src="@/assets/image/cardlist_right3.jpg" alt="" />
+            <img src="/cardlist_right3.jpg" alt="" />
           </div>
         </li>
       </ul>
@@ -82,39 +82,38 @@
 import gsap from "gsap";
 import { onMounted } from "vue";
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".g-cardlist", // 监听 `.animate-from-bottom` 元素
-    start: "top bottom", // 当元素顶部到达视口底部时触发
-    end: "bottom top", // 可以设置动画结束位置
-    // scrub: true, // 使得动画与滚动位置同步
-    // markers: true, // 开启标记，便于调试
-    toggleActions: "play none none none",
-  },
-});
-
 onMounted(() => {
-  tl.from(".cardlist-left", {
-    delay: 2,
-    opacity: 0,
-    xPercent: -100,
-    duration: 2,
-  })
-    .from(
-      ".cardlist-right-item",
-      {
-        opacity: 0,
-        xPercent: 100,
-        duration: 2,
-        stagger: 0.5,
-      },
-      "<"
-    )
-    .from(".animation-cardlist-txt", {
+  setTimeout(() => {
+    const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".g-cardlist", // 监听 `.animate-from-bottom` 元素
+      start: "top 75%",  // 当元素的顶部到达视口底部时触发
+      end: "bottom 25%",    // 当元素的底部到达视口顶部时结束
+      // markers: true, // 开启标记，便于调试
+      toggleActions: "play none none none",
+    },
+  });
+    tl.from(".cardlist-left", {
       opacity: 0,
-      y: 100,
-      duration: 1,
-    });
+      xPercent: -100,
+      duration: 2,
+    })
+      .from(
+        ".cardlist-right-item",
+        {
+          opacity: 0,
+          xPercent: 100,
+          duration: 2,
+          stagger: 0.5,
+        },
+        "<"
+      )
+      .from(".animation-cardlist-txt", {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+      });
+  }, 100);
 });
 </script>
 
@@ -123,14 +122,16 @@ onMounted(() => {
   display: flex;
   height: 930px;
   align-items: center;
-  background: url("@/assets/image/cardlist_bg.png") no-repeat top transparent;
+  background: url("/cardlist_bg.png") no-repeat top transparent;
   background-attachment: fixed;
+
   .cardlist-inner {
     width: 95%;
     margin: 0 auto;
     display: flex;
   }
 }
+
 .cardlist-left {
   flex: 1;
   width: 0;
@@ -138,43 +139,53 @@ onMounted(() => {
   max-height: 774px;
   display: flex;
   flex-direction: column;
+
   .cardlist-left-media {
     width: 100%;
     height: 524px;
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
+
   .cardlist-left-txt {
     flex: 1;
   }
 }
+
 .cardlist-right {
   flex: 1;
   min-width: 800px;
+
   .cardlist-right-item {
     display: flex;
     height: 260px;
     margin-bottom: 30px;
     align-items: center;
+
     &:last-child {
       margin-bottom: 0;
     }
+
     .cardlist-right-txt {
       flex: 3;
       width: 0;
       height: 100%;
       border: 10px solid #181818;
       padding: 20px;
+
       h4 {
         margin-bottom: 20px;
       }
     }
+
     .cardlist-right-media {
       flex: 2;
       height: 100%;
+
       img,
       video {
         width: 100%;
@@ -184,11 +195,13 @@ onMounted(() => {
     }
   }
 }
+
 .cardlist-txt {
   padding: 30px;
   background-color: #161616;
   border: 20px solid #181818;
   overflow: hidden;
+
   h4 {
     font-size: 16px;
     color: #eee;
@@ -199,6 +212,7 @@ onMounted(() => {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
   .desc {
     font-size: 14px;
     color: #bbb;
